@@ -30,13 +30,16 @@ export const useTagViewStore = defineStore({
       this.active = path
     },
     removeTagView(fullPath: string) {
+      const isCurrent = this.active === fullPath
       const index = this.tagViews.findIndex((item: tagViewItem) => {
         return fullPath === item.fullPath
       })
       this.tagViews.splice(index, 1)
       // back to near tag
-      this.active = this.tagViews[this.tagViews.length - 1].fullPath
-      router.push(this.active)
+      if (isCurrent) {
+        this.active = this.tagViews[index - 1].fullPath
+        router.push(this.active)
+      }
     },
     renameTagView(tagItem: tagViewItem) {
       const item = this.tagViews.find((ele: tagViewItem) => {
