@@ -1,18 +1,23 @@
 <template>
   <nav class="nav h-full">
-    <el-menu default-active="1" :router="true">
-      <template v-for="(item, index) in routes">
-        <menu-item v-if="!item.hidden" :key="index" :item="item" />
-      </template>
+    <el-menu :router="true" :default-active="activeRoute">
+      <menu-item v-for="(item, index) in routes" :key="index" :item="item" :path="item.path" />
     </el-menu>
   </nav>
 </template>
 
 <script setup lang="ts">
-import menuItem from './item.vue'
+import menuItem from './menu-item.vue'
 import router from '@/router'
-const routes: any = router.options.routes
+import { computed } from '@vue/reactivity'
+import { useRoute } from 'vue-router'
+const routes: any = router.options.routes.filter((route: any) => {
+  return !route.hidden
+})
 
+const activeRoute = computed(() => {
+  return useRoute().path
+})
 </script>
 
 <style lang="scss" scoped>

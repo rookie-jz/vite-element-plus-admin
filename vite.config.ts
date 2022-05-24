@@ -5,9 +5,11 @@ import { svgBuilder } from './src/plugins/svgBuilder'
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
-
+// element icon auto import
 import Icons from 'unplugin-icons/vite'
 import IconsResolver from 'unplugin-icons/resolver'
+
+import { viteMockServe } from 'vite-plugin-mock'
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -19,6 +21,10 @@ export default defineConfig({
   },
   plugins: [
     vue(),
+    viteMockServe({
+      mockPath: './mock',
+      supportTs: true
+    }),
     AutoImport({
       // 自动导入 Vue 相关函数，如：ref, reactive, toRef 等
       imports: ['vue'],

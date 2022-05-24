@@ -7,12 +7,12 @@
     <div class="float-right flex items-center h-full pr-4">
       <el-dropdown trigger="hover">
         <span class="text-white cursor-pointer">
-          <el-icon>
+          <el-icon class="align-top mr-1">
             <i-ep-avatar />
           </el-icon>
-          周星星
+          <span class="align-top mr-1">{{ userInfo.name }}</span>
         </span>
-        <el-icon>
+        <el-icon class="align-top">
           <i-ep-arrow-down class="text-white" />
         </el-icon>
         <template #dropdown>
@@ -27,11 +27,11 @@
 
 <script setup lang="ts">
 import setting from '../../setting'
-
+import { useUserStore } from '@/store/user'
 const { title } = setting
-const logout = async () => {
-  alert('logout')
-}
+
+const userStore = useUserStore()
+const { logout, userInfo }: any = userStore
 </script>
 
 <style scoped lang="scss">

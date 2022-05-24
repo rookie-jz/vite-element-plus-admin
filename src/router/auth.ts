@@ -1,14 +1,22 @@
-import store from '@/store'
+import { useUserStore } from '@/store/user'
 import Layout from '@/layout/index.vue'
+import { Router, RouteRecordRaw } from 'vue-router'
+const modules = import.meta.glob('@/views/**/*.vue')
 
-async function getAsyncRoute() {
-  const permissions = await store.dispatch('user/getPermission')
-  return generalRoute(permissions)
+async function generalAsyncRoute(router: Router) {
+  const userStore = useUserStore()
+  const permissions = await userStore.getPermission()
+  const routes = await generalRoute(permissions)
+
+  router.options.routes = router.options.routes.concat(routes)
+  routes.forEach((route: RouteRecordRaw) => {
+    router.addRoute(route)
+  })
 }
 
 function generalRoute(permissions: any[]) {
   const routes: any[] = []
-  permissions.forEach((ele) => {
+  permissions.forEach(ele => {
     const item: any = {
       path: ele.path,
       name: ele.name,
@@ -18,7 +26,8 @@ function generalRoute(permissions: any[]) {
     if (ele.component === 'Layout') {
       item.component = Layout
     } else {
-      item.component = require(`@/views${ele.component}.vue`).default
+      const key = generalFullImportPath(ele.component)
+      item.component = modules[key]
     }
     if (ele.children) {
       item.children = generalRoute(ele.children)
@@ -29,4 +38,8 @@ function generalRoute(permissions: any[]) {
   return routes
 }
 
-export default getAsyncRoute
+function generalFullImportPath(path: string) {
+  return `../views${path}.vue`
+}
+
+export default generalAsyncRoute

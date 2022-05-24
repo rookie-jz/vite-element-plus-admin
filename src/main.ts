@@ -8,6 +8,7 @@ import './index.css'
 import './styles/reset.css'
 
 import svgIcon from './icons/svgIcon.vue'
+import '@/permission'
 const app = createApp(App)
 // 注册全局svg-icon
 app.component('SvgIcon', svgIcon)

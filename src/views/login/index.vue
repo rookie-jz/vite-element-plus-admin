@@ -1,23 +1,23 @@
 <template>
   <div class="h-full login-page flex items-center justify-center">
-    <div class="login-box shadow-md bg-white">
+    <div class="login-box shadow-md bg-white p-8">
       <h1 class="text-center mb-10 text-2xl">{{ setting.title }}</h1>
       <el-form ref="formRef" :model="form" :rules="rules">
         <el-form-item prop="username">
           <el-input v-model="form.username" placeholder="请输入用户名">
             <template #prepend>
-              <el-button icon="User" disabled />
+              <el-icon>
+                <i-ep-user />
+              </el-icon>
             </template>
           </el-input>
         </el-form-item>
         <el-form-item prop="password">
-          <el-input
-            v-model="form.password"
-            type="password"
-            placeholder="请输入密码"
-          >
+          <el-input v-model="form.password" type="password" placeholder="请输入密码">
             <template #prepend>
-              <el-button icon="Lock" disabled />
+              <el-icon>
+                <i-ep-Lock />
+              </el-icon>
             </template>
           </el-input>
         </el-form-item>
@@ -31,9 +31,9 @@
 
 <script setup type="ts">
 import setting from '@/setting'
-import { login } from '@/api/user'
 import { setToken } from '@/utils/auth'
 import router from '@/router'
+import { useUserStore } from "@/store/user"
 
 const formRef = ref('')
 const form = reactive({
@@ -46,13 +46,11 @@ const rules = reactive({
 })
 
 const submit = async(formEl) => {
-  // console.log(formEl)
+  const userStore = useUserStore()
   await formEl.validate(async(valid) => {
-    console.log(valid)
     if (!valid) return false
-    const { status, message, data } = await login(form)
-    if (status !== 200) return ElMessage.error(message)
-    setToken(data)
+    const token = await userStore.login(form)
+    setToken(token)
     router.push('/')
   })
 }
@@ -65,7 +63,6 @@ const submit = async(formEl) => {
   background-color: #f0f2f5;
   .login-box {
     width: 450px;
-    padding: 20px;
   }
 }
 </style>

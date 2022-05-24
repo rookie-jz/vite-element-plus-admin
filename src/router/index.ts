@@ -1,12 +1,11 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 import Layout from '@/layout/index.vue'
-
 const routes = [
   {
     path: '/login',
-    name: 'login',
     component: () => import('@/views/login/index.vue'),
-    meta: { title: '登录页' },
+    meta: { title: '登录页', noAuth: true },
+    name: 'Login',
     hidden: true
   },
   {
@@ -26,7 +25,9 @@ const routes = [
 ]
 
 const router = createRouter({
-  // scrollBehavior: () => ({ y: 0 }),
+  scrollBehavior() {
+    return { top: 0 }
+  },
   history: createWebHashHistory(),
   routes
 })
