@@ -10,10 +10,6 @@ interface User {
   password: string
 }
 
-interface UserInfo {
-  name: ''
-}
-
 export const useUserStore = defineStore({
   id: 'user',
   state: () => {

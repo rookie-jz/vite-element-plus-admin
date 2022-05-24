@@ -30,8 +30,12 @@ import setting from '../../setting'
 import { useUserStore } from '@/store/user'
 const { title } = setting
 
-const userStore = useUserStore()
-const { logout, userInfo }: any = userStore
+interface User {
+  name?: string
+}
+
+const { logout } = useUserStore()
+const userInfo: User = useUserStore().userInfo
 </script>
 
 <style scoped lang="scss">

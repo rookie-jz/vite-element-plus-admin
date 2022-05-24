@@ -55,8 +55,6 @@ const oneItem = computed(() => {
     if (item.meta.icon) {
       onShowItem.meta.icon = item.meta.icon
     }
-    console.log(onShowItem, path)
-
     return onShowItem
   }
   return item
