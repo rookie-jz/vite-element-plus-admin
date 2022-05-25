@@ -29,7 +29,7 @@
   2.侧边栏路由动态配置  
   3.侧边栏路由权限拦截  
   4.vxe-table强大的表格 
-  5.基于el-form封装组件 b-el-form(可通过配置json数据生成基本表格，开放有插槽自定义表单项) 
+  5.基于el-form封装组件 b-el-form(可通过配置json数据生成基本表格，开放有插槽自定义表单项)    
   6.tailwindcss强大的css库，具有丰富的常用样式库  
   7.vue-router引入  
   8.pinia引入，相比vuex，使用更快捷，体积更轻便 
