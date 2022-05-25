@@ -7,7 +7,7 @@
 </template>
 
 <script setup lang="ts">
-import menuItem from './menu-item.vue'
+import menuItem from './menuItem.vue'
 import router from '@/router'
 import { computed } from '@vue/reactivity'
 import { useRoute } from 'vue-router'

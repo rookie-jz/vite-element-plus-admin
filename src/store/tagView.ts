@@ -18,7 +18,7 @@ export const useTagViewStore = defineStore({
   },
   actions: {
     addTagView(tagItem: tagViewItem) {
-      const hasItem = this.tagViews.find(ele => {
+      const hasItem = this.tagViews.find((ele) => {
         return ele.fullPath === tagItem.fullPath
       })
       if (!hasItem) {

@@ -34,9 +34,27 @@ export default [
         message: 'ok',
         data: [
           {
+            path: '/table-form',
+            component: 'Layout',
+            meta: { title: 'Table-Form', icon: 'entry' },
+            children: [
+              {
+                path: 'table',
+                name: 'table',
+                component: '/tableForm/table',
+                meta: { title: 'Table' }
+              },
+              {
+                path: 'form',
+                name: 'form',
+                component: '/tableForm/form',
+                meta: { title: 'form' }
+              }
+            ]
+          },
+          {
             path: '/auth',
             component: 'Layout',
-            redirect: 'index',
             meta: { title: '权限管理', icon: 'auth' },
             children: [
               {

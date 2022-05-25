@@ -3,7 +3,6 @@
     <el-tabs :model-value="activePath" type="card" class="tabs" @tab-remove="tabRemove" @tab-click="tabClick">
       <el-tab-pane v-for="item in tagViews" :key="item.path" :label="item.title" :name="item.fullPath" :closable="item.title !== '首页'" />
     </el-tabs>
-    <!-- <div class="cursor-pointer absolute right-1 top-1">22</div> -->
   </div>
 </template>
 

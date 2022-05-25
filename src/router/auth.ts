@@ -16,7 +16,7 @@ async function generalAsyncRoute(router: Router) {
 
 function generalRoute(permissions: any[]) {
   const routes: any[] = []
-  permissions.forEach(ele => {
+  permissions.forEach((ele) => {
     const item: any = {
       path: ele.path,
       name: ele.name,
