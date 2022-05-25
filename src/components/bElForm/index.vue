@@ -1,7 +1,11 @@
 <template>
   <el-form ref="formRef" :model="form" :rules="rules" :label-width="labelWidth">
     <el-row :gutter="gutter">
-      <b-el-form-item v-for="(item, index) in options" :key="index" v-bind="item" :form="form"></b-el-form-item>
+      <b-el-form-item v-for="(item, index) in options" :key="index" v-bind="item" :form="form">
+        <template v-if="item.slot" #[item.slot.name]>
+          <slot :name="item.slot.name"></slot>
+        </template>
+      </b-el-form-item>
     </el-row>
   </el-form>
 </template>

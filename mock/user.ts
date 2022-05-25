@@ -49,6 +49,12 @@ export default [
                 name: 'form',
                 component: '/tableForm/form',
                 meta: { title: 'form' }
+              },
+              {
+                path: 'components',
+                name: 'components',
+                component: '/tableForm/components',
+                meta: { title: 'components' }
               }
             ]
           },

@@ -1,6 +1,10 @@
 <template>
   <div class="form p-20">
-    <b-el-form ref="formRef" :form="form" :options="options" :gutter="20" label-width="100px"></b-el-form>
+    <b-el-form ref="formRef" :form="form" :options="options" :gutter="20" label-width="100px">
+      <template #rang>
+        <el-input-number v-model="form.rang" :min="1" :max="10" />
+      </template>
+    </b-el-form>
     <div class="text-center pt-4">
       <el-button type="primary" @click="submit">submit</el-button>
     </div>
@@ -11,7 +15,7 @@
 import bElForm from '@/components/bElForm/index.vue'
 import { reactive, ref } from 'vue'
 
-const form = reactive({})
+const form: any = reactive({})
 const formRef: any = ref(null)
 const options = [
   {
@@ -54,6 +58,20 @@ const options = [
     ],
     span: 12,
     validates: [{ required: true, message: 'place select your radio' }]
+  },
+  {
+    type: 'date',
+    field: 'birthday',
+    label: 'birthday',
+    span: 12,
+    validates: [{ required: true, message: 'place select your radio' }]
+  },
+  {
+    label: 'rang',
+    field: 'rang',
+    span: 12,
+    slot: { name: 'rang' },
+    validates: [{ required: true, message: 'slot rang' }]
   }
 ]
 
