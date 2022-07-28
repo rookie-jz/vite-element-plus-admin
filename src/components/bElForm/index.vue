@@ -1,7 +1,12 @@
 <template>
   <el-form ref="formRef" :model="form" :rules="rules" :label-width="labelWidth">
     <el-row :gutter="gutter">
-      <b-el-form-item v-for="(item, index) in options" :key="index" v-bind="item" :form="form">
+      <b-el-form-item
+        v-for="(item, index) in options"
+        :key="index"
+        v-bind="item"
+        :form="form"
+      >
         <template v-if="item.slot" #[item.slot.name]>
           <slot :name="item.slot.name"></slot>
         </template>
@@ -12,6 +17,7 @@
 
 <script lang="ts" setup>
 import { computed } from '@vue/reactivity'
+import { FormInstance } from 'element-plus'
 import { reactive, ref } from 'vue'
 import bElFormItem from './items/bElFormItem.vue'
 
@@ -38,7 +44,7 @@ const props = defineProps({
   }
 })
 const { form, options } = reactive(props)
-const formRef: any = ref(null)
+const formRef = ref<FormInstance>()
 const rules = computed(() => {
   const oRule: any = {}
   options.forEach((item: any) => {

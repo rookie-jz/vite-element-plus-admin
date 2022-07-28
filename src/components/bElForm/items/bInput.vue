@@ -1,5 +1,12 @@
 <template>
-  <el-input v-model="value" :type="type" :placeholder="placeholder" :rows="rows" @change="handleChange" @input="handleInput"></el-input>
+  <el-input
+    v-model="value"
+    :type="type"
+    :placeholder="placeholder"
+    :rows="rows"
+    @change="handleChange"
+    @input="handleInput"
+  ></el-input>
 </template>
 
 <script lang="ts" setup>

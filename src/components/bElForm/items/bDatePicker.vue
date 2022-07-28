@@ -1,5 +1,11 @@
 <template>
-  <el-date-picker v-model="value" :placeholder="placeholder" :type="type" :value-format="format" @change="handleChange"></el-date-picker>
+  <el-date-picker
+    v-model="value"
+    :placeholder="placeholder"
+    :type="type"
+    :value-format="format"
+    @change="handleChange"
+  ></el-date-picker>
 </template>
 
 <script lang="ts" setup>

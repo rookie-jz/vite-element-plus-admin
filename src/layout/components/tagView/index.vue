@@ -1,17 +1,28 @@
 <template>
   <div class="bg-white pt-2 relative tag-views">
-    <el-tabs :model-value="activePath" type="card" class="tabs" @tab-remove="tabRemove" @tab-click="tabClick">
-      <el-tab-pane v-for="item in tagViews" :key="item.path" :label="item.title" :name="item.fullPath" :closable="item.title !== '首页'" />
+    <el-tabs
+      :model-value="activePath"
+      type="card"
+      class="tabs"
+      @tab-remove="tabRemove"
+      @tab-click="tabClick"
+    >
+      <el-tab-pane
+        v-for="item in tagViews"
+        :key="item.path"
+        :label="item.title"
+        :name="item.fullPath"
+        :closable="item.title !== '首页'"
+      />
     </el-tabs>
   </div>
 </template>
 
 <script lang="ts" setup>
-import router from '@/router'
 import { useTagViewStore } from '@/store/tagView'
 import { computed } from '@vue/reactivity'
 import { watch } from 'vue'
-import { useRoute } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 
 const tagViewStore = useTagViewStore()
 const tagViews = tagViewStore.tagViews
@@ -21,7 +32,7 @@ const activePath = computed(() => {
 })
 
 const route = useRoute()
-
+const { push } = useRouter()
 const activeCurrentRoute = () => {
   const currItem: tagViewItem = {
     fullPath: route.fullPath,
@@ -39,11 +50,11 @@ watch(
 
 const tabClick = (row: any) => {
   tagViewStore.activeTagView(row.paneName)
-  router.push(row.paneName)
+  push(row.paneName)
 }
 
-const tabRemove = (name: string) => {
-  tagViewStore.removeTagView(name)
+const tabRemove = (path: string) => {
+  tagViewStore.removeTagView(path)
 }
 </script>
 

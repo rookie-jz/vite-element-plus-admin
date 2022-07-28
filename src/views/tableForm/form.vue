@@ -1,6 +1,12 @@
 <template>
   <div class="form p-20">
-    <b-el-form ref="formRef" :form="form" :options="options" :gutter="20" label-width="100px">
+    <b-el-form
+      ref="formRef"
+      :form="form"
+      :options="options"
+      :gutter="20"
+      label-width="100px"
+    >
       <template #rang>
         <el-input-number v-model="form.rang" :min="1" :max="10" />
       </template>
@@ -13,10 +19,11 @@
 
 <script lang="ts" setup>
 import bElForm from '@/components/bElForm/index.vue'
+import { FormInstance } from 'element-plus'
 import { reactive, ref } from 'vue'
 
 const form: any = reactive({})
-const formRef: any = ref(null)
+const formRef = ref<FormInstance>()
 const options = [
   {
     type: 'input',

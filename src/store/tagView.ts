@@ -1,6 +1,6 @@
 import router from '@/router'
 import { defineStore } from 'pinia'
-import { reactive } from 'vue'
+import { reactive, ref } from 'vue'
 
 export const useTagViewStore = defineStore({
   id: 'tagView',
@@ -13,7 +13,8 @@ export const useTagViewStore = defineStore({
     tagViews.push(homeItem)
     return {
       tagViews,
-      active: '/index'
+      active: '/index',
+      reload: ref(false)
     }
   },
   actions: {
@@ -29,14 +30,14 @@ export const useTagViewStore = defineStore({
     activeTagView(path: string) {
       this.active = path
     },
-    removeTagView(fullPath: string) {
+    removeTagView(fullPath: string, back = true) {
       const isCurrent = this.active === fullPath
       const index = this.tagViews.findIndex((item: tagViewItem) => {
         return fullPath === item.fullPath
       })
       this.tagViews.splice(index, 1)
       // back to near tag
-      if (isCurrent) {
+      if (isCurrent && back) {
         this.active = this.tagViews[index - 1].fullPath
         router.push(this.active)
       }

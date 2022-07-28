@@ -1,6 +1,11 @@
 <template>
   <el-checkbox-group v-model="value" @change="handleChange">
-    <el-checkbox v-for="item in optionList" :key="item.key" :label="item.value">{{ item.label }}</el-checkbox>
+    <el-checkbox
+      v-for="item in optionList"
+      :key="item.key"
+      :label="item.value"
+      >{{ item.label }}</el-checkbox
+    >
   </el-checkbox-group>
 </template>
 

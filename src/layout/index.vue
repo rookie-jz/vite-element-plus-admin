@@ -10,7 +10,7 @@
           <tag-view />
         </div>
         <div class="view-wrapper">
-          <router-view />
+          <router-view v-if="!view.reload" />
         </div>
       </div>
     </div>
@@ -21,6 +21,8 @@
 import vNav from './components/nav/index.vue'
 import vHeader from './components/vHeader.vue'
 import tagView from './components/tagView/index.vue'
+import { useTagViewStore } from '@/store/tagView'
+const view = useTagViewStore()
 </script>
 
 <style lang="scss" scoped>

@@ -8,11 +8,12 @@
  * Copyright (c) 2022 by HJZ, All Rights Reserved. 
 -->
 <template>
-  <div class="">role</div>
+  <div class="">
+    <el-button type="primary" @click="back">back</el-button>
+  </div>
 </template>
-<script>
-export default {
-  name: 'Role',
-}
+<script setup lang="ts">
+import { useBack } from '@/hooks/usePage'
+const back = useBack()
 </script>
 <style scoped lang="scss"></style>
